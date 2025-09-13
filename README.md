@@ -1,5 +1,7 @@
 # 📝 TaskNest
 
+![Main Window](assets/main-window.png)
+
 TaskNest is a Django-based ToDo application that allows users to:
 
 - ✅ Register and log in securely
