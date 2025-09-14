@@ -42,10 +42,15 @@ DB_HOST=localhost
 DB_PORT=5432
 ```
 
-### 5. Database Setup
+### 5. Start PostgreSQL Locally
 ```bash
-python manage.py makemigrations
-python manage.py migrate
+sudo systemctl start postgresql
+```
+
+### 6. Database Setup
+```bash
+python ToDoApp/manage.py makemigrations
+python ToDoApp/manage.py migrate
 ```
 
 ---
@@ -55,6 +60,39 @@ python manage.py migrate
 python manage.py runserver
 ```
 Then visit http://127.0.0.1:8000 in your browser to start using TaskNest.
+
+---
+
+## 🐳 Docker Setup
+
+### 1. Create a `.env` file using the provided `.env.example`
+```bash
+cp .env.example .env
+```
+Then update the values for docker
+```bash
+DB_NAME=your_db_name
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_HOST=db
+DB_PORT=5432
+```
+
+### 2. Stop Local PostgreSQL (to avoid port conflicts)
+```bash
+sudo systemctl stop postgresql
+```
+
+### 3. Build and Run Docker Containers
+```bash
+docker compose up --build
+```
+
+### 4. Run Migrations Inside Docker
+```bash
+docker compose exec web python ToDoApp/manage.py migrate
+```
+Visit http://localhost:8000 to use TaskNest in Docker.
 
 ---
 
